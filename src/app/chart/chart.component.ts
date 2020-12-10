@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoronaService } from '../services/corona.service';
-import { Chart, ChartOptions} from 'chart.js';
-import { MultiDataSet,Label } from 'ng2-charts';
-import { SlicePipe } from '@angular/common';
-import { splitNsName } from '@angular/compiler';
-import { animation } from '@angular/animations';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-chart',

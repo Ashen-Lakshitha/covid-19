@@ -3,19 +3,25 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node serve.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc"
+    "postinstall": "ng build --output-path angularapp  --aot --prod"
+  },
+  "engines": {
+    "node": "v12.13.0",
+    "npm": "6.12.0"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.6",
     "@angular/cdk": "^10.2.7",
+    "@angular/cli": "^11.0.4",
     "@angular/common": "~10.0.6",
     "@angular/compiler": "~10.0.6",
+    "@angular/compiler-cli": "^10.0.14",
     "@angular/core": "~10.0.6",
     "@angular/flex-layout": "^11.0.0-beta.33",
     "@angular/forms": "~10.0.6",
@@ -24,15 +30,18 @@
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
     "chart.js": "^2.9.4",
+    "express": "^4.17.1",
     "ng2-charts": "^2.4.2",
+    "path": "^0.12.7",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "typescript": "~3.9.5",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.2",
-    "@angular/cli": "~10.0.5",
-    "@angular/compiler-cli": "~10.0.6",
+    "@angular/cli": "^11.0.4",
+    "@angular/compiler-cli": "^10.0.14",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
