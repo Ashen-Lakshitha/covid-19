@@ -1,0 +1,103 @@
+import { Component, OnInit,Input } from '@angular/core';
+import { CoronaService } from '../services/corona.service';
+import { Chart } from 'chart.js';
+
+@Component({
+  selector: 'app-linechart',
+  templateUrl: './linechart.component.html',
+  styleUrls: ['./linechart.component.scss']
+})
+export class LinechartComponent implements OnInit {
+
+  lineChart :any;
+  data:any;
+  date:any[];
+  count:any[];
+
+  @Input() min: number;
+  @Input() max: number;
+  //@Input() check():  void;
+
+  constructor(private corona:CoronaService) { }
+
+  check():void{
+    console.log("min ->",this.min);
+    console.log("max ->",this.max);
+    this.count = [];
+    this.date = [];
+    for(let i = this.min; i <= this.max; i++){
+      this.count.push( this.data.data.daily_pcr_testing_data[i].count);
+      this.date.push(this.data.data.daily_pcr_testing_data[i].date);
+    }
+    console.log("Count", this.count);
+    if(this.count && this.date){
+      this.renderChart(this.count,this.date); 
+    } 
+  }
+
+  reset():void{
+    this.ngOnInit();
+  }
+  renderChart(c:any,d:any) {
+    this.lineChart = new Chart('lineChart', {
+      type: 'line',
+      data: {
+
+          labels: d,
+          datasets: [{
+              label: 'Number of PCR',
+
+              data: c,
+              fill:false,
+              lineTension:0.2,
+              borderColor:"red",
+              borderWidth: 1,
+              pointStyle:'circle',
+              pointRadius:0
+          }]
+      }, 
+      options: {
+          scales: {
+              yAxes: [{
+                display: true
+              }],
+              xAxes: [{
+                display: true
+              }],
+          }
+      }
+    })
+  }
+
+  /*ngOnChanges(changes: SimpleChanges): void {
+    //throw new Error('Method not implemented.');
+    console.log("min ->",this.min);
+    console.log("max ->",this.max);
+    this.count = [];
+    this.date = [];
+    for(let i = this.min; i <= this.max; i++){
+      this.count.push( this.data.data.daily_pcr_testing_data[i].count);
+      this.date.push(this.data.data.daily_pcr_testing_data[i].date);
+    }
+    console.log("Count", this.count);
+    if(this.count && this.date){
+      this.renderChart(this.count,this.date); 
+    } 
+    
+  }*/
+
+  ngOnInit(): void {
+    this.corona.getData().subscribe((res)=>{
+      this.data = res;
+      this.count = res.data['daily_pcr_testing_data'].map((r: { count: any; }) => r.count);
+      this.date = res.data['daily_pcr_testing_data'].map((r: { date: any; }) => r.date)
+
+      //console.log("date ->", date)
+      //console.log("count ->", count)
+      
+      if(this.count && this.date){
+        this.renderChart(this.count,this.date); 
+      } 
+    })
+  }
+}
