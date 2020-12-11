@@ -1,10 +1,11 @@
 <div fxLayout="row wrap" fxLayoutGap="grid" style="margin-right: 1rem ;">
-    <div fxFlex="33%" fxFlex.xs="100%" fxFles.sm="100%">
-        <div>
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="100%" >
+        <div class="date">
             <p style="font-size: 20px;text-align: center;">
                 Date Range
             </p>
-        
+        </div>
+        <div class="date">
             <mat-form-field color="accent" appearance="fill">
                 <mat-label>Start Date</mat-label>
                 <input matInput [matDatepicker]="picker1" (dateInput)="addEvent1($event)" [min]="minDate" [max]="maxDate">
@@ -14,7 +15,7 @@
                 <mat-datepicker #picker1 color="primary"></mat-datepicker>
             </mat-form-field>
         </div>
-        <div>
+        <div class="date">
             <mat-form-field appearance="fill" color="accent">
                 <mat-label>End Date</mat-label>
                 <input matInput [matDatepicker]="picker2" (dateInput)="addEvent2($event)" [min]="minDate" [max]="maxDate">
@@ -25,13 +26,13 @@
             </mat-form-field>
         </div>
         
-        <div fxLayoutGap="12px">
+        <div fxLayoutGap="12px" class="date" style="margin-bottom: 40px;">
             <button mat-raised-button color="primary" (click)="btnClick1()">Check</button>
         
             <button mat-raised-button color="primary" (click)="btnClick2()">Reset</button>
         </div>
     </div>
-    <div fxFlex="67%" fxFlex.xs="100%" fxFles.sm="100%">
+    <div fxFlex="67%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%">
         <app-linechart [min]="minIndex" [max]="maxIndex" ></app-linechart>
     </div>
 </div>
