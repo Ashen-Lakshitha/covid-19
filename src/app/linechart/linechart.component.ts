@@ -60,11 +60,25 @@ export class LinechartComponent implements OnInit {
       options: {
           scales: {
               yAxes: [{
-                display: true
+                display: true,
+                ticks:{
+                  fontColor:'black',
+                  fontSize:16,
+                }
               }],
               xAxes: [{
-                display: true
+                display: true,
+                ticks:{
+                  fontColor:'pink',
+                  fontSize:16,
+                }
               }],
+          },
+          legend:{
+            labels:{
+              fontColor:'rgb(255, 51, 133)',
+              fontSize:16,
+            }
           }
       }
     })
