@@ -1,7 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, } from '@angular/material/datepicker';
 import { CoronaService } from '../services/corona.service';
 import { LinechartComponent } from '../linechart/linechart.component';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-date-selector',
@@ -11,6 +12,13 @@ import { LinechartComponent } from '../linechart/linechart.component';
 export class DateSelectorComponent implements OnInit {
 
   @ViewChild( LinechartComponent ) line: LinechartComponent ; 
+  @ViewChild('p1', {
+    read: MatInput
+  }) p1: MatInput;
+  @ViewChild('p2', {
+    read: MatInput
+  }) p2: MatInput;
+
 
   minDate: Date;
   maxDate: Date;
@@ -35,8 +43,8 @@ export class DateSelectorComponent implements OnInit {
   addEvent1(event: MatDatepickerInputEvent<Date>) {
     this.selectedDate1 = event.value; //get start date
     this.c_date1=this.changeDate(this.selectedDate1); //change as needed
-    //console.log(this.c_date1);
-    for (let i = 0; i <= this.Index; i++) {
+    console.log("mind-",this.c_date1);
+    for (let i = 0; i < this.Index; i++) {
       if(this.pcr_data[i].date.localeCompare(this.c_date1)==true){
         this.minIndex = i-1;
         //console.log(this.pcr_data[i-1].date); 
@@ -48,20 +56,26 @@ export class DateSelectorComponent implements OnInit {
   addEvent2(event: MatDatepickerInputEvent<Date>) {
     this.selectedDate2 = event.value;
     this.c_date2=this.changeDate(this.selectedDate2);
-    //console.log(this.c_date2);
-    for (let i = 0; i <= this.Index; i++) {
-      if(this.pcr_data[i].date.localeCompare(this.c_date2)==true){
-        this.maxIndex = i-1;
-        //console.log(this.maxIndex); 
+    for (let i = 0; i < this.Index ; i++) {
+      if(i == this.Index){
+        this.maxIndex = this.Index;
+      }
+      else if(this.pcr_data[i].date.localeCompare(this.c_date2)==true){
+        this.maxIndex = i;
+        console.log("in->",i); 
+        console.log("ld-",this.pcr_data[297].date)
         break;
       }
     }
+    console.log("len-",this.Index);
+    console.log("maxd-",this.c_date2);
+    console.log("ld-",this.pcr_data[296].date)
   }
 
   ngOnInit(): void {
     this.corona.getData().subscribe((res)=>{
       this.pcr_data = res.data.daily_pcr_testing_data;
-      this.Index = this.pcr_data.length -1;
+      this.Index = this.pcr_data.length;
       //console.log(this.Index);
     })
   }
@@ -74,6 +88,8 @@ export class DateSelectorComponent implements OnInit {
   btnClick2(){
     console.log("Reset");
     this.line.reset();
+    this.p1.value='';
+    this.p2.value='';
   }
 
   changeDate(date:Date){

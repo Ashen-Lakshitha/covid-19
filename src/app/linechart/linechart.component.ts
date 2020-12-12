@@ -13,6 +13,7 @@ export class LinechartComponent implements OnInit {
   data:any;
   date:any[];
   count:any[];
+  update:any;
 
   @Input() min: number;
   @Input() max: number;
@@ -25,7 +26,7 @@ export class LinechartComponent implements OnInit {
     console.log("max ->",this.max);
     this.count = [];
     this.date = [];
-    for(let i = this.min; i <= this.max; i++){
+    for(let i = this.min; i < this.max; i++){
       this.count.push( this.data.data.daily_pcr_testing_data[i].count);
       this.date.push(this.data.data.daily_pcr_testing_data[i].date);
     }
@@ -90,9 +91,10 @@ export class LinechartComponent implements OnInit {
     this.corona.getData().subscribe((res)=>{
       this.data = res;
       this.count = res.data['daily_pcr_testing_data'].map((r: { count: any; }) => r.count);
-      this.date = res.data['daily_pcr_testing_data'].map((r: { date: any; }) => r.date)
+      this.date = res.data['daily_pcr_testing_data'].map((r: { date: any; }) => r.date);
+      this.update = res.data.update_date_time;
 
-      //console.log("date ->", date)
+      console.log("date ->", this.update)
       //console.log("count ->", count)
       
       if(this.count && this.date){
