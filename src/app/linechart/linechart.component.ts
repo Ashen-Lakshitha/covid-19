@@ -26,7 +26,7 @@ export class LinechartComponent implements OnInit {
     console.log("max ->",this.max);
     this.count = [];
     this.date = [];
-    for(let i = this.min; i < this.max; i++){
+    for(let i = this.min; i <= this.max; i++){
       this.count.push( this.data.data.daily_pcr_testing_data[i].count);
       this.date.push(this.data.data.daily_pcr_testing_data[i].date);
     }

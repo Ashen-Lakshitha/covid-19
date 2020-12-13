@@ -16,7 +16,7 @@
             </mat-form-field>
         </div>
         <div>
-            <mat-form-field appearance="fill" color="accent">
+            <mat-form-field appearance="fill">
                 <mat-label>End Date</mat-label>
                 <input #p2 matInput [matDatepicker]="picker2" (dateInput)="addEvent2($event)" [min]="minDate" [max]="maxDate">
                 <mat-datepicker-toggle matSuffix [for]="picker2">
@@ -27,8 +27,8 @@
         </div>
         
         <div fxLayoutGap="12px"  style="margin-bottom: 40px;">
-            <button mat-raised-button color="primary" (click)="btnClick1()">Check</button>
-            <button mat-raised-button color="primary" (click)="btnClick2()">Reset</button>
+            <button mat-raised-button color="red" (click)="btnClick1()">Check</button>
+            <button mat-raised-button color="red" (click)="btnClick2()">Reset</button>
         </div>
     </div>
     <div fxFlex="67%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%">

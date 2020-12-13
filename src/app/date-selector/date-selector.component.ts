@@ -43,7 +43,6 @@ export class DateSelectorComponent implements OnInit {
   addEvent1(event: MatDatepickerInputEvent<Date>) {
     this.selectedDate1 = event.value; //get start date
     this.c_date1=this.changeDate(this.selectedDate1); //change as needed
-    console.log("mind-",this.c_date1);
     for (let i = 0; i < this.Index; i++) {
       if(this.pcr_data[i].date.localeCompare(this.c_date1)==true){
         this.minIndex = i-1;
@@ -57,19 +56,11 @@ export class DateSelectorComponent implements OnInit {
     this.selectedDate2 = event.value;
     this.c_date2=this.changeDate(this.selectedDate2);
     for (let i = 0; i < this.Index ; i++) {
-      if(i == this.Index){
-        this.maxIndex = this.Index;
-      }
-      else if(this.pcr_data[i].date.localeCompare(this.c_date2)==true){
+      if(this.pcr_data[i].date.match(this.c_date2)){
         this.maxIndex = i;
-        console.log("in->",i); 
-        console.log("ld-",this.pcr_data[297].date)
         break;
       }
     }
-    console.log("len-",this.Index);
-    console.log("maxd-",this.c_date2);
-    console.log("ld-",this.pcr_data[296].date)
   }
 
   ngOnInit(): void {

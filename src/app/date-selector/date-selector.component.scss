@@ -6,32 +6,38 @@
     font-weight: bold;
 }
 
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label when focus*/
+    color: white !important;
+}
 
-input matInput{
+::ng-deep .mat-form-field-label {
+    /*change color of label*/
+    color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: rgb(255, 51, 133) !important;;
+}
+
+mat-datepicker-toggle {
+    color: white !important;
+}
+
+input{
     color: white;
 }
-  
-  ::ng-deep .mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color: white !important;
-   }
-  
-   ::ng-deep.mat-form-field-underline {
-    /*change color of underline*/
-    background-color: white !important;
-  } 
-  
-  ::ng-deep.mat-form-field-ripple {
-   /*change color of underline when focused*/
-   background-color: white !important;;
-  }
-  
-  ::ng-deep .mat-form-field-label {
-    /*change color of label*/
-    color: white !important;
-   }
-  
-  
-  mat-datepicker-toggle {
-    color: white !important;
-  }
+
+/*mat-form-field{
+    background-color: rgb(34, 95, 114);
+}*/
+
+::ng-deep.mat-calendar-body-cell-content.mat-calendar-body-today{
+    border-color:  rgb(42, 111, 133)!important;
+    color: black !important;
+}
+
+::ng-deep.mat-calendar-body-selected{
+    background-color: red;
+}
