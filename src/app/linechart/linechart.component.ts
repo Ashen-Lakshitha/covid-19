@@ -69,7 +69,7 @@ export class LinechartComponent implements OnInit {
               xAxes: [{
                 display: true,
                 ticks:{
-                  fontColor:'pink',
+                  fontColor:'black',
                   fontSize:16,
                 }
               }],

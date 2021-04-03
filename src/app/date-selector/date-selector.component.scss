@@ -13,7 +13,7 @@
 
 ::ng-deep .mat-form-field-label {
     /*change color of label*/
-    color: white !important;
+    color: black !important;
 }
 
 ::ng-deep.mat-form-field-ripple {
@@ -22,11 +22,11 @@
 }
 
 mat-datepicker-toggle {
-    color: white !important;
+    color: black !important;
 }
 
 input{
-    color: white;
+    color: black;
 }
 
 /*mat-form-field{
