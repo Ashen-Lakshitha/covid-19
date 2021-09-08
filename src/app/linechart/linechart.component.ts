@@ -26,8 +26,8 @@ export class LinechartComponent implements OnInit {
     console.log("max ->",this.max);
     this.count = [];
     this.date = [];
-    for(let i = this.min; i <= this.max; i++){
-      this.count.push( this.data.data.daily_pcr_testing_data[i].count);
+    for(let i = this.min; i >= this.max; i--){
+      this.count.push( this.data.data.daily_pcr_testing_data[i].pcr_count);
       this.date.push(this.data.data.daily_pcr_testing_data[i].date);
     }
     console.log("Count", this.count);
@@ -104,7 +104,7 @@ export class LinechartComponent implements OnInit {
   ngOnInit(): void {
     this.corona.getData().subscribe((res)=>{
       this.data = res;
-      this.count = res.data['daily_pcr_testing_data'].map((r: { count: any; }) => r.count);
+      this.count = res.data['daily_pcr_testing_data'].map((r: { pcr_count: any; }) => r.pcr_count);
       this.date = res.data['daily_pcr_testing_data'].map((r: { date: any; }) => r.date);
       this.update = res.data.update_date_time;
 
@@ -112,7 +112,9 @@ export class LinechartComponent implements OnInit {
       //console.log("count ->", count)
       
       if(this.count && this.date){
-        this.renderChart(this.count,this.date); 
+        // console.log("date ->", this.date);
+        // console.log("date ->", this.count);
+        this.renderChart(this.count.reverse(),this.date.reverse()); 
       } 
     })
   }

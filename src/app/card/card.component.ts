@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.corona.getData().subscribe((data)=>{
       var data = data.data;
-      console.log(data);
+      // console.log(data);
 
       this.types[0].value = data.local_total_cases;
       this.types[1].value = data.local_active_cases;

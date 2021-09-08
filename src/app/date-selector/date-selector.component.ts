@@ -24,7 +24,7 @@ export class DateSelectorComponent implements OnInit {
   maxDate: Date;
   selectedDate1: Date;
   selectedDate2: Date;
-  Index:Number;
+  len:number;
   minIndex: Number;
   maxIndex:Number;
   pcr_data:any[];
@@ -43,10 +43,12 @@ export class DateSelectorComponent implements OnInit {
   addEvent1(event: MatDatepickerInputEvent<Date>) {
     this.selectedDate1 = event.value; //get start date
     this.c_date1=this.changeDate(this.selectedDate1); //change as needed
-    for (let i = 0; i < this.Index; i++) {
-      if(this.pcr_data[i].date.localeCompare(this.c_date1)==true){
-        this.minIndex = i-1;
-        //console.log(this.pcr_data[i-1].date); 
+    // console.log(this.c_date1);
+    for (let i = 0; i < this.len ; i++) {
+      if(this.pcr_data[i].date.match(this.c_date1)){
+        this.minIndex = i;
+        console.log("min ->",this.minIndex);
+        // console.log(this.pcr_data[i-1].date); 
         break;
       }  
     }
@@ -55,9 +57,10 @@ export class DateSelectorComponent implements OnInit {
   addEvent2(event: MatDatepickerInputEvent<Date>) {
     this.selectedDate2 = event.value;
     this.c_date2=this.changeDate(this.selectedDate2);
-    for (let i = 0; i < this.Index ; i++) {
+    for (let i = 0; i < this.len ; i++) {
       if(this.pcr_data[i].date.match(this.c_date2)){
         this.maxIndex = i;
+        console.log(this.maxIndex);
         break;
       }
     }
@@ -66,8 +69,9 @@ export class DateSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.corona.getData().subscribe((res)=>{
       this.pcr_data = res.data.daily_pcr_testing_data;
-      this.Index = this.pcr_data.length;
-      //console.log(this.Index);
+      this.len = this.pcr_data.length;
+      console.log(this.pcr_data);
+      console.log(this.len);
     })
   }
     

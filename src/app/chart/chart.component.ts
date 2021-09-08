@@ -14,7 +14,7 @@ export class ChartComponent implements OnInit {
   ngOnInit(): void {
     this.corona.getData().subscribe((data)=>{
       var data = data.data;
-      console.log(data);
+      // console.log(data);
 
       myChart.data.datasets[0].data[0] = data.local_total_cases;
       myChart.data.datasets[0].data[1] = data.local_active_cases;
