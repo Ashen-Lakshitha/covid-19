@@ -47,7 +47,7 @@ export class DateSelectorComponent implements OnInit {
     for (let i = 0; i < this.len ; i++) {
       if(this.pcr_data[i].date.match(this.c_date1)){
         this.minIndex = i;
-        console.log("min ->",this.minIndex);
+        // console.log("min ->",this.minIndex);
         // console.log(this.pcr_data[i-1].date); 
         break;
       }  
@@ -60,7 +60,7 @@ export class DateSelectorComponent implements OnInit {
     for (let i = 0; i < this.len ; i++) {
       if(this.pcr_data[i].date.match(this.c_date2)){
         this.maxIndex = i;
-        console.log(this.maxIndex);
+        // console.log(this.maxIndex);
         break;
       }
     }
